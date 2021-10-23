@@ -1,0 +1,21 @@
+{
+    "name": "spaceresearcher",
+    "version": "1.0.0",
+    "description": "App for non-relational DB course",
+    "main": "index.js",
+    "start": "MONGODB_URI=http://localhost:27017 node index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/moevm/nosql2h21-nasa"
+    },
+    "author": "@po4yka, @FireRalin, @Legendorik",
+    "license": "MIT",
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "express-handlebars": "^5.2.0",
+        "leaflet": "^1.7.1",
+        "mongoose": "^5.11.8",
+        "nodemon": "^2.0.6"
+    }
+}
