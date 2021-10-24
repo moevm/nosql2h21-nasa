@@ -335,6 +335,36 @@ z-index: 9999;
 z-index: 9999;
 }
 
+/*
+    SERVICE SECTION
+ */
+.service-section{
+    display: block;
+    text-align: center;
+    padding: 100px 0 80px;
+}
+.service-item{}
+.service-item i{
+    font-size: 70px;
+    text-align: center;
+}
+.service-item h3{
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+}
+.service-item p{
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 24px;
+}
+.service-item:hover h3, .service-item:hover i{
+    color: #f3a50d
+
+}
+
+
 
 /*
     FOOTER SECTION
