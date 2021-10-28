@@ -1,0 +1,26 @@
+{
+    "_id": <ObjectId>,
+    "name": "Aachen",
+    "recclass": "L5",
+    "mass": "21",
+    "year": <Timestamp>,
+    "reclat": "50.775000",
+    "reclong": "6.083330",
+    "geolocation": {
+        "latitude": "50.775",
+        "longitude": "6.08333"
+    }
+}
+
+{
+    "_id": <ObjectId>,
+    "name": "2010 PK9",
+    "recclass": "L5",
+    "diameter": "21",
+    "risk_of_collision": 35.5,
+    "perigee_distance": 1000,
+    "apogree_distance": 500,
+    "date_of_first_observation": <Timestamp>,
+    "date_of_last_observation": <Timestamp>,
+    "year": <Timestamp>
+}
