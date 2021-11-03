@@ -1,8 +1,14 @@
-const {Router} = require('express')
-const router = Router()
+"use strict";
 
-router.get('/', (req,res) => {
-    res.render('index')
-})
+const { Router } = require("express");
+const router = Router();
 
-module.exports = router
+const PORT = 8080;
+const HOST = '0.0.0.0';
+
+router.get("/", (req, res) => {
+    res.render("index");
+});
+
+module.exports = router;
+console.log(`Running on http://${HOST}:${PORT}`);
