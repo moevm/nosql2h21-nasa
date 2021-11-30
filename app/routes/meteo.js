@@ -1,14 +1,25 @@
-"use strict";
+const {Router} = require('express')
+const landmet = require('../models/landmets')
+const router = Router()
 
-const { Router } = require("express");
-const router = Router();
+router.get('/', (req,res) => {
+    res.render('index')
+})
 
-const PORT = 8080;
-const HOST = '0.0.0.0';
+router.get('/landmet', async (req,res) => {
+    const landmets = await landmet.find({recclass: 'H', name: 'Abo'}).lean()
+    console.log(landmets)
+    res.render('landmet', {
+        landmets
+    })
+})
 
-router.get("/", (req, res) => {
-    res.render("index");
-});
+router.get('/NEO', async (req,res) => {
+  res.render('NEO')
+})
 
-module.exports = router;
-console.log(`Running on http://${HOST}:${PORT}`);
+router.get('/MKS', async (req,res) => {
+    res.render('MKS')
+})
+
+module.exports = router
