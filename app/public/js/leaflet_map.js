@@ -1,5 +1,10 @@
 let url = 'http://api.open-notify.org/iss-now.json';
 
+var facts = Array(
+	'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique risus mauris, accumsan convallis lorem commodo nec. Vivamus a risus semper, pulvinar tortor ac, molestie nulla.'
+);
+var randomFact = facts[Math.floor(Math.random() * facts.length)]
+
 var map;
 var ISSIcon;
 var ISSmarker;
@@ -20,6 +25,8 @@ fetch(url)
 	}).addTo(map);
 
 	ISSmarker = L.marker([out.iss_position.latitude, out.iss_position.longitude], {icon: ISSIcon}).addTo(map)
+		.bindPopup(randomFact)
+		.openPopup();
 	
 })
 .catch(err => { throw err });
