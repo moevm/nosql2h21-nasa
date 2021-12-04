@@ -10,7 +10,6 @@ $(".search-btn").click(function (event) {
 });
 
 (function ($) {
-    // menu fixed
     var navHeight = 40;
     var nav = $(".header-section");
     $(window).scroll(function () {
@@ -22,7 +21,6 @@ $(".search-btn").click(function (event) {
     });
 })(jQuery);
 
-//(function($){
 $(window).load(function () {
     var selectedCategory;
     var $grid = $(".featured").isotope({
@@ -94,10 +92,6 @@ $(window).load(function () {
         owl.trigger("owl.prev");
     });
 })(jQuery);
-/*
-$('#fact').carousel({
-    interval: 3000
-})*/
 
 (function ($) {
     (function () {

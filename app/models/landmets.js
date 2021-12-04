@@ -1,6 +1,5 @@
-const {Schema, model} = require('mongoose')
+const { Schema, model } = require("mongoose");
 
-const schema = new Schema({
-})
+const schema = new Schema({});
 
-module.exports = model('landmets', schema)
+module.exports = model("landmets", schema);

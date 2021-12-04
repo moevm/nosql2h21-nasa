@@ -68,7 +68,7 @@ $.get(url, function(data) {
 	document.getElementsByName("clickable-cell").forEach(item => {
 		item.addEventListener('click', event => {
 			if (!data[rowNum].reclat){
-				// всплывающее окно при отсутствии геоданных
+				// window for empty data
 				var modal = document.getElementById("myModal");
 				var span = document.getElementsByClassName("close")[0];
 				modal.style.display = "block";
@@ -123,7 +123,7 @@ function tableUpdate(){
 	var toMass = document.getElementById("toMass").value.toString();
 	url.searchParams.append('toMass', toMass);
 	url.searchParams.append('object', 'meteorite');
-	//наносим маркеры на карту
+	// markers on map
 	$.get(url, function(data) {
 		table.setData(data, columns);
 		document.getElementById("spinner").style.display = "none";
@@ -177,18 +177,13 @@ function setActiveWindow(TBelement){
 	}
 }
 
-
-
-
-
-
 const targetNode = document.getElementsByClassName("gs-table-body")[0];
 const config = { attributes: true, childList: true, subtree: true };
 const callback = function(mutationsList, observer) {
 	document.getElementsByName("clickable-cell").forEach(item => {
 		item.addEventListener('click', event => {
 			var rowNumOnPage = parseInt(item.getAttribute('id'))
-			// всплывающее окно при отсутствии геоданных
+			// window for empty data
 			if (!table.getCurrentPageData()[rowNumOnPage].reclat){
 				var modal = document.getElementById("myModal");
 				var span = document.getElementsByClassName("close")[0];
