@@ -5,8 +5,8 @@ const exphbs = require('express-handlebars')
 const meteoRoutes = require('./routes/meteo')
 const path = require('path')
 
-const PORT = process.env.PORT || 3000
-const db_uri = process.env.MONGODB_URI
+const PORT = process.env.PORT || 8080
+const db_uri = process.env.MONGODB_URI || 'mongodb://mongo:27017/my_db'
 
 const app = express()
 const hbs = exphbs.create({
@@ -16,7 +16,7 @@ const hbs = exphbs.create({
 
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
-app.set('views', 'views')
+app.set('views', __dirname + '/views')
 
 app.use(meteoRoutes)
 
