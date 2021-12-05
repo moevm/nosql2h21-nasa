@@ -13,7 +13,11 @@ def make_json(csvFilePath, jsonFilePath):
         for row in reader:
             entry = OrderedDict()
             for field in fieldnames:
-                entry[field] = row[field]
+                if (field == "year"):           
+                    #print(row[field][6:10])
+                    entry[field] = row[field][6:10]
+                else:
+                    entry[field] = row[field]
             entries.append(entry)
 
     with open(file=jsonFilePath, mode='w', encoding='utf-8') as jsonfile:

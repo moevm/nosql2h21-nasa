@@ -11,8 +11,10 @@ def make_json(csvFilePath, jsonFilePath):
     with open(csvFilePath, 'r') as csvfile:
         reader = csv.DictReader(csvfile, fieldnames)
         for row in reader:
+            #if row[0] in fieldnames
             entry = OrderedDict()
             for field in fieldnames:
+            if 
                 entry[field] = row[field]
             entries.append(entry)
 
