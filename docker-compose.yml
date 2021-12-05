@@ -1,24 +1,18 @@
 version: "3.8"
 services:
-  nasa:
-    container_name: 'nasa'
-    image: 'nasa'
-    restart: always
-    build: .
-    ports:
-      - "8080:8080"
-    links:
-      - mongo
-  mongo:
-    image: 'mongo'
-    container_name: 'mongodb'
-    volumes:
-      - mongodb-data:/data/db
-    environment:
-      - MONGO_INITDB_DATABASE=memory-game
-      - MONGO_INITDB_ROOT_USERNAME=appuser
-      - MONGO_INITDB_ROOT_PASSWORD=secret
-    ports:
-      - '27017:27017'
-volumes:
-  mongodb-data: null
+       nasa:
+           container_name: nasa
+           image: nasa
+           restart: always
+           build: .
+           ports:
+             - "8080:8080"
+           links:
+             - mongo
+       mongo:
+             container_name: mongo
+             image: mongo
+             volumes:
+               - ./data/db:/data/db
+             ports:
+               - '27017:27017'
