@@ -9,7 +9,7 @@ fieldnames = ("GeoLocation", "fall", "id", "mass", "name",
 def make_json(csvFilePath, jsonFilePath):
     entries = []
 
-    with open(csvFilePath, 'r') as csvfile:
+    with open(file=csvFilePath, mode='r', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile, fieldnames)
         for row in reader:
             entry = OrderedDict()
@@ -17,7 +17,7 @@ def make_json(csvFilePath, jsonFilePath):
                 entry[field] = row[field]
             entries.append(entry)
 
-    with open(jsonFilePath, 'w') as jsonfile:
+    with open(file=jsonFilePath, mode='w', encoding='utf-8') as jsonfile:
         json.dump(entries, jsonfile)
         jsonfile.write('\n')
 
