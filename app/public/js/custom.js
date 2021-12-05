@@ -103,7 +103,7 @@ $(window).load(function () {
             };
 
         Util = (function () {
-            function Util() {}
+            function Util() { }
 
             Util.prototype.extend = function (custom, defaults) {
                 var key, value;
@@ -367,9 +367,9 @@ $(".dropdown .dropdown-menu li").click(function () {
 
 $(".dropdown-menu li").click(function () {
     var input =
-            "<strong>" +
-            $(this).parents(".dropdown").find("input").val() +
-            "</strong>",
+        "<strong>" +
+        $(this).parents(".dropdown").find("input").val() +
+        "</strong>",
         msg = '<span class="msg">Hidden input value: ';
     $(".msg").html(msg + input + "</span>");
 });

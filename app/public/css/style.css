@@ -381,7 +381,7 @@ ul.navbar-nav.menu li a {
 
 .main-section {
     text-align     : left;
-    background     : url(../images/background1.jpg);
+    background     : url(../images/main_background.jpg);
     background-size: cover;
     overflow       : hidden;
 }
