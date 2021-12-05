@@ -1,24 +1,45 @@
 version: "3.8"
 services:
   nasa:
-    container_name: 'nasa'
-    image: 'nasa'
-    restart: always
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nasa
+    container_name: nasa
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MONGO_USERNAME=$MONGO_USERNAME
+      - MONGO_PASSWORD=$MONGO_PASSWORD
+      - MONGO_HOSTNAME=mongo
+      - MONGO_PORT=$MONGO_PORT
+      - MONGO_DB=$MONGO_DB
     ports:
       - "8080:8080"
-    links:
-      - mongo
-  mongo:
-    image: 'mongo'
-    container_name: 'mongodb'
     volumes:
-      - mongodb-data:/data/db
+      - node_modules:/app/node_modules
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:latest
+    container_name: mongodb
+    restart: unless-stopped
+    env_file: .env
+    command: --auth
     environment:
-      - MONGO_INITDB_DATABASE=memory-game
-      - MONGO_INITDB_ROOT_USERNAME=appuser
-      - MONGO_INITDB_ROOT_PASSWORD=secret
-    ports:
-      - '27017:27017'
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_ROOT_NAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_ROOT_PASS
+      - MONGO_INITDB_DATABASE=$MONGO_DB
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - dbdata:/data/db
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
+
 volumes:
-  mongodb-data: null
+  dbdata:
+  node_modules:

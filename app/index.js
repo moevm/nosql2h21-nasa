@@ -5,8 +5,16 @@ const exphbs = require('express-handlebars')
 const meteoRoutes = require('./routes/meteo')
 const path = require('path')
 
+const {
+    MONGO_USERNAME,
+    MONGO_PASSWORD,
+    MONGO_HOSTNAME,
+    MONGO_PORT,
+    MONGO_DB
+} = process.env;
+
 const PORT = process.env.PORT || 8080
-const db_uri = process.env.MONGODB_URI || 'mongodb://mongo:27017/my_db'
+const db_uri = process.env.MONGODB_URI || `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOSTNAME}:${MONGO_PORT}/${MONGO_DB}?authSource=${MONGO_DB}`;
 
 const app = express()
 const hbs = exphbs.create({
@@ -24,10 +32,10 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 async function start() {
     try {
-        await mongoose.connect
-            (db_uri,
-                {
-                })
+        await mongoose.connect(db_uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
         app.listen(PORT, () => {
             console.log('Server has been started...')
         })
