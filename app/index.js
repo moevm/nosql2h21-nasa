@@ -11,7 +11,7 @@ const db_uri = process.env.MONGODB_URI || 'mongodb://mongo:27017/my_db'
 const app = express()
 const hbs = exphbs.create({
     defaultLayout: 'main',
-    extname: 'hbs'  
+    extname: 'hbs'
 })
 
 app.engine('hbs', hbs.engine)
@@ -22,16 +22,16 @@ app.use(meteoRoutes)
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-async function start(){
-    try{
+async function start() {
+    try {
         await mongoose.connect
-        (db_uri, 
-         {
-         })
+            (db_uri,
+                {
+                })
         app.listen(PORT, () => {
             console.log('Server has been started...')
         })
-    } catch(e){
+    } catch (e) {
         console.log(e)
     }
 }
