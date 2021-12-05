@@ -6,7 +6,7 @@ const meteoRoutes = require('./routes/meteo')
 const path = require('path')
 
 const PORT = process.env.PORT || 8080
-const db_uri = process.env.MONGODB_URI || 'mongodb://mongo:27017/my_db'
+const db_uri = process.env.MONGODB_URI || 'mongodb://mongo:27017/my_db' //'mongodb://localhost:27017/my_db' //'mongodb://mongo:27017/my_db'
 
 const app = express()
 const hbs = exphbs.create({
@@ -24,13 +24,20 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 async function start() {
     try {
-        await mongoose.connect
+        const connection = await mongoose.connect
             (db_uri,
                 {
                 })
         app.listen(PORT, () => {
-            console.log('Server has been started...')
+            console.log('Server has been started at localhost:8080')
         })
+
+	if (connection){
+		console.log("db connected")
+	}
+	else{
+		console.log("connection error")
+	}
     } catch (e) {
         console.log(e)
     }
