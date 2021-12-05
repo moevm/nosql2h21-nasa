@@ -2,8 +2,7 @@ import csv
 import json
 from collections import OrderedDict
 
-fieldnames = ("GeoLocation", "fall", "id", "mass", "name",
-              "nametype", "recclass", "reclat", "reclong", "year")
+fieldnames = ("name", "id",  "nametype", "recclass", "mass",  "fall", "reclat", "reclong", "year",  "GeoLocation")
 
 
 def make_json(csvFilePath, jsonFilePath):
