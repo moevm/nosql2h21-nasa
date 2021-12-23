@@ -157,4 +157,43 @@ router.get("/MKS", async (req, res) => {
     res.render("MKS");
 });
 
+router.post("/service/import", async (req, res) => {
+    console.log("service/import")
+    console.log(req.body)
+
+
+    landmet.deleteMany({}, function(err, result){
+        if (err) {
+            console.log("Плохо1", err)
+        } else {
+            console.log("Хорошо1")
+            landmet.insertMany(req.body, function(err,result) {
+                if (err) {
+                    console.log("Плохо2", err)
+                } else {
+                    console.log("Хорошо2")
+                }
+            });
+        }
+    })
+    
+    
+    res.jsonp({"ok":"ok"});
+
+})
+
+router.get("/service/export", async (req, res) => {
+    console.log("service/export")
+
+    landmet.find({}, function(err, result){
+        if (err) {
+            console.log("Плохо", err)
+        } else {
+            console.log("Хорошо")
+            res.jsonp(JSON.stringify(result));
+        }
+    })
+    
+
+})
 module.exports = router;
