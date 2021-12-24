@@ -20,6 +20,7 @@ function importDB(){
                 contentType: 'application/json; charset=utf-8',
             }).done(function( msg ) {
                 console.log("success", msg);
+                location.reload()
             });
         }, false);
 

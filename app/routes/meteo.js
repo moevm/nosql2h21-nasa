@@ -167,18 +167,34 @@ router.post("/service/import", async (req, res) => {
             console.log("Плохо1", err)
         } else {
             console.log("Хорошо1")
-            landmet.insertMany(req.body, function(err,result) {
+            landmet.insertMany(req.body["landmets"], function(err,result) {
                 if (err) {
                     console.log("Плохо2", err)
                 } else {
                     console.log("Хорошо2")
+                    res.jsonp({"ok":"ok"});
+                }
+            });
+        }
+    })
+
+    asteroid.deleteMany({}, function(err, result){
+        if (err) {
+            console.log("Плохо3", err)
+        } else {
+            console.log("Хорошо4")
+            asteroid.insertMany(req.body["asteroids"], function(err,result) {
+                if (err) {
+                    console.log("Плохо5", err)
+                } else {
+                    console.log("Хорошо6")
                 }
             });
         }
     })
     
     
-    res.jsonp({"ok":"ok"});
+    
 
 })
 
@@ -190,7 +206,18 @@ router.get("/service/export", async (req, res) => {
             console.log("Плохо", err)
         } else {
             console.log("Хорошо")
-            res.jsonp(JSON.stringify(result));
+            var resultLandmets = result
+            asteroid.find({}, function(err, result){
+                if (err) {
+                    console.log("Плохо2", err)
+                    res.jsonp(JSON.stringify({"landmets": resultLandmets}));
+                }
+                else {
+                    console.log("Хорошо2")
+                    res.jsonp(JSON.stringify({"landmets": resultLandmets, "asteroids": result}));
+                }
+            })
+            //res.jsonp(JSON.stringify(result));
         }
     })
     
