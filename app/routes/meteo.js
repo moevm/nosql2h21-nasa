@@ -4,6 +4,7 @@ const asteroid = require("../models/asteroids");
 const router = Router();
 const http = require("http");
 const url = require("url");
+const { performance } = require('perf_hooks');
 
 router.get("/", (req, res) => {
     res.render("index");
@@ -235,4 +236,42 @@ router.get("/service/export", async (req, res) => {
     
 
 })
+
+router.get("/service/execute_test", async (req, res) => {
+    console.log("service/execute_test")
+    testIter(res, 1, [])
+
+})
+
+function testIter(res, iter, times){
+    time1 = performance.now()
+    if (iter == 20){
+        landmet.find({"name":"Zulu Queen"}, function(err, result){
+            if (err) {
+                console.log("Плохо", err)
+            } else {
+                time2 = performance.now()
+                diff = time2-time1
+                times.push(diff)
+                avg = times.map(i=>x+=i, x=0).reverse()[0]/20
+                landmet.collection.stats(function(err, result){
+                    res.jsonp(JSON.stringify({"size": result["size"], "avg_query_time": avg}));
+                })
+            }
+        })
+    }
+    else {
+        landmet.find({"name":"Zulu Queen"}, function(err, result){
+            if (err) {
+                console.log("Плохо", err)
+            } else {
+                time2 = performance.now()
+                diff = time2-time1
+                times.push(diff)
+                testIter(res, iter+1, times) 
+    
+            }
+        })
+    }
+}
 module.exports = router;

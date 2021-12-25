@@ -97,3 +97,15 @@ function addOne(){
         //document.getElementById('input-button').click();
     }
 
+    function executeTest(){
+        console.log("executeTest")
+        var url = new URL(window.location.origin + "/service/execute_test");
+        $.ajax({
+            url: url,
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+        }).done(function( msg ) {
+            console.log("success", msg);
+        });
+    }
+
