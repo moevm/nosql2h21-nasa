@@ -192,11 +192,23 @@ router.post("/service/import", async (req, res) => {
             });
         }
     })
-    
-    
-    
-
 })
+
+
+router.post("/service/add_one", async (req, res) => {
+    console.log("service/add_one")
+    console.log(req.body)
+    landmet.insertMany(req.body, function(err,result) {
+        if (err) {
+            console.log("Плохо2", err)
+        } else {
+            console.log("Хорошо2")
+            res.jsonp({"ok":"ok"});
+        }
+    });
+})
+
+
 
 router.get("/service/export", async (req, res) => {
     console.log("service/export")
